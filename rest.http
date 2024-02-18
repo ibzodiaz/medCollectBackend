@@ -1,0 +1,345 @@
+GET http://localhost:3000/api/patients/antecedents/659fe8c6c475ae005e231bb5
+
+###
+GET http://localhost:3000/api/patients/signescliniques/one/659fe898c475ae005e231bb2
+
+###
+GET http://localhost:3000/api/patients/antecedents/one/659dd96624dc536afeca22bc
+
+###
+GET http://localhost:3000/api/patients/signesparacliniques/one/659dd96624dc536afeca22bc
+
+### Get a product by id
+GET http://localhost:3000/api/patients
+
+### update a product by id
+PATCH http://localhost:3000/api/patients/65a2c279d03d3437433e8755
+Content-Type: application/json
+
+{
+    "prenom":"Marie",
+    "nom":"Madeleine",
+    "profession":"Ingénieure"
+}
+
+### update a product by id
+PATCH http://localhost:3000/api/patients/65b7ead0331a5d3e4dcd44ed
+Content-Type: application/json
+
+{
+    "prenom":"Pape ibou",
+    "nom":"Thiam the boss"
+}
+
+### Delete a product by id
+DELETE  http://localhost:3000/api/patients/65935a5f1b14897cefc5d3ef
+
+
+### 
+POST http://localhost:3000/api/patients
+Content-Type: application/json
+
+{
+    "prenom": "John",
+    "nom": "Doe",
+    "statut": "Célibataire",
+    "age": 30,
+    "adresse": "123 Rue de la République",
+    "telephone": "0123456789",
+    "profession": "Ingénieur",
+    "niveau_socioeconomique": "Moyen"
+}
+
+###
+POST http://localhost:3000/api/patients/antecedents
+Content-Type: application/json
+
+{
+"atcdDecompensation": false,
+"autres": "",
+"diabete_gestionnelle": false,
+"gestite": 0,
+"grossessesGemellaires": false,
+"hospitalisationsAnterieures": false,
+"htaGravidique": false,
+"menarche": 0,
+"nombreAtcdDecompensation": 0,
+"nombreHospitalisations": 0,
+"parite": 0,
+"patientId": "65c7c46e7d064c62f6d16817",
+"pre_eclampsie": true,
+"tocolyseProlongee": "",
+"typeInsuffisanceCardiaque": "IVD"
+}
+
+
+###
+POST http://localhost:3000/api/patients/signescliniques
+Content-Type: application/json
+
+{
+    "patientId": "659dd96624dc536afeca22bc",
+    "dyspneeEffort": {
+        "presente": true,
+        "typeNYHA": "Type III"
+    },
+    "oedemeAiguPoumon": {
+        "presente": true
+    },
+    "toux": {
+        "presente": true
+    },
+    "palpitations": {
+        "presente": true
+    },
+    "omi": {
+        "presente": true
+    },
+    "constantes": {
+        "ta": {
+            "systolique": 120,
+            "diastolique": 80
+        },
+        "fc": 70,
+        "fr": 16,
+        "temperature": 37,
+        "poids": 70,
+        "taille": 175,
+        "imc": 22.86
+    },
+    "souffleCardiaque": {
+        "presente": true,
+        "typeSouffle": "IM"
+    },
+    "tsvj": {
+        "presente": true
+    },
+    "hepatomegalie": {
+        "presente": true
+    }
+}
+
+###
+DELETE  http://localhost:3000/api/patients/659ff06e7df56449cf4ff0db/signescliniques
+
+
+###
+GET http://localhost:3000/api/patients/signesparacliniques/
+
+###
+POST http://localhost:3000/api/patients/signesparacliniques
+Content-Type: application/json
+
+{
+  "patientId": "659dd96624dc536afeca22bc",
+
+  "biologie": {
+    "hemoglobinemie": 14.5,
+    "gb": 8000,
+    "plaquettes": 250000,
+    "vgm": 90,
+    "ccmh": 34,
+    "tcmh": 12,
+    "crp": 3.5,
+    "uree": 25,
+    "creatininemie": 1.2,
+    "ntProBNP": 150,
+    "prolactine": 12
+  },
+
+  "telecoeur": {
+    "presente": true,
+    "indexCardiothoracique": 0.5
+  },
+
+  "autresSignes": "Some additional signs",
+
+  "ecg": {
+    "presente": true,
+    "rythmeCardiaque": "Sinusal"
+  },
+
+  "ett": {
+    "presente": true,
+    "dtdvg": "Normal",
+    "dtsvg": "Normal",
+    "fevg": "Normal",
+    "dtog": "Normal",
+    "ntProBNP": true,
+    "prolactine": false
+  },
+
+  "epanchementPericardique": {
+    "presente": false
+  },
+
+  "fuiteValvulaire": {
+    "presente": true,
+    "typeFuite": "Mitrale"
+  },
+
+  "stenoseValvulaire": {
+    "presente": false
+  },
+
+  "traitement": {
+    "diuretique": true,
+    "iec": false,
+    "tonicardiaque": true,
+    "bromocriptine": false,
+    "anticoagulants": true,
+    "betabloquants": false,
+    "contraception": true,
+    "autres": false
+  },
+
+  "modaliteEvolutiveHospitalisation": "Favorable",
+
+  "aspectsDefavorables": {
+    "complications": true,
+    "deces": false
+  },
+
+  "typeComplications": ["AVC", "ICG"],
+
+  "delaiDeces": null,
+
+  "evolutionApresSortie": "6 mois",
+
+  "classeNYHA": "Récupération partielle",
+
+  "detailsDeces": {
+    "date": "2024-01-20T12:00:00Z",
+    "causes": "Unknown",
+    "lieu": "Hôpital"
+  },
+
+  "bonneObservanceTherapeutique": true,
+
+  "nombreRehospitalisations": 2,
+
+  "facteursDecompensation": {
+    "anemie": true,
+    "infectionsViralesOuBacteriennes": false,
+    "denutrition": true,
+    "rupturesTherapeutiques": false
+  },
+
+  "analyses": {
+    "nfs": true,
+    "uree": true,
+    "creatininemie": false
+  },
+
+  "echocardiographie": {
+    "e": "Normal",
+    "a": "Normal",
+    "td": "Normal",
+    "ee": "Normal",
+    "tapse": "Normal"
+  },
+
+  "evolutionBebe": {
+    "mortNes": false,
+    "faiblePoidsNaissance": false,
+    "prematurite": true,
+    "poidsNaissance": 3000,
+    "alimentationNaissance": "Breastfeeding",
+    "poids3Mois": 5000,
+    "alimentation3Mois": "Formula",
+    "poids6Mois": 7000,
+    "alimentation6Mois": "Mixed",
+    "poids12Mois": 9000,
+    "alimentation12Mois": "Solid Foods"
+  }
+}
+
+
+###
+PUT http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+    "hopitalId": "65d0d50f38a559095a39c6da",
+    "nom":"diaz",
+    "prenom":"ibzodiaz",
+    "pseudo":"ibzo",
+    "email":"ibzodiaz@gmail.com",
+    "password": "Passer2024",
+    "service": "Laboratoire",
+    "speciality": "Cardiologie"
+}
+
+###
+GET http://localhost:3000/api/hopital
+
+###
+PUT http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+    "nom":"reacher",
+    "prenom":"Jack",
+    "pseudo":"Jack",
+    "email":"jackreacher@gmail.com",
+    "password": "Passer2024"
+}
+
+###
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+    "email":"jackreacher@gmail.com",
+    "password": "Passer2024"
+}
+
+###
+GET http://localhost:3000/api/hopital
+
+###
+DELETE http://localhost:3000/api/users/65a51db2c54a11778ddb7ca1
+
+###
+POST http://localhost:3000/api/meetings
+Content-Type: application/json
+
+{
+
+"patientId": "65c7b0727d064c62f6d1674b",
+"userId": "65d0e70133ae470dad9da41b",
+"hospitalId": "65d0d50f38a559095a39c6da",
+"date": "2024-02-19",
+"hourEnd": "11:00:00",
+"hourStart": "09:00:00",
+"subject": "first rv"
+}
+
+###
+PATCH http://localhost:3000/api/meetings/65c99f54b723e6511d5e0518
+Content-Type: application/json
+
+{
+  "patientId": "65c98d24c9c774b090a7d65e",
+  "userId": "65abc97f23827f185fcd27a1",
+  "date": "2024-02-29",
+  "hourStart":"08:30:00",
+  "hourEnd":"09:30:00",
+  "subject":"Ma première modification"
+}
+
+###
+GET http://localhost:3000/api/planning/65abc97f23827f185fcd27a1
+
+
+###
+POST http://localhost:3000/api/hopital
+Content-Type: application/json
+
+{
+   "Nom": "Hopital de Kolda",
+   "Lieu": "Kolda"
+}
+
+###
+GET http://localhost:3000/api/hopital
