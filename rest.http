@@ -1,7 +1,54 @@
 GET http://localhost:3000/api/patients/antecedents/659fe8c6c475ae005e231bb5
 
 ###
-GET http://localhost:3000/api/patients/signescliniques/one/659fe898c475ae005e231bb2
+GET http://localhost:3000/api/patients/signescliniques/one/659dd96624dc536afeca22bc
+
+###
+POST http://localhost:3000/api/patients/signescliniques
+Content-Type: application/json
+
+{
+    "constantes": {
+        "fc": 0,
+        "fr": 0,
+        "imc": 24.049343594386603,
+        "poids": 85,
+        "ta": {
+            "diastolique": 0,
+            "systolique": 0
+        },
+        "taille": 188,
+        "temperature": 0
+    },
+    "dyspneeEffort": {
+        "presente": true,
+        "typeNYHA": "Type II"
+    },
+    "hepatomegalie": {
+        "presente": true
+    },
+    "oedemeAiguPoumon": {
+        "presente": true
+    },
+    "omi": {
+        "presente": true
+    },
+    "palpitations": {
+        "presente": true
+    },
+    "patientId": "65c7ae407d064c62f6d1672b",
+    "souffleCardiaque": {
+        "presente": true,
+        "typeSouffle": []
+    },
+    "toux": {
+        "presente": false
+    },
+    "tsvj": {
+        "presente": true
+    }
+}
+
 
 ###
 GET http://localhost:3000/api/patients/antecedents/one/659dd96624dc536afeca22bc
@@ -131,129 +178,63 @@ POST http://localhost:3000/api/patients/signesparacliniques
 Content-Type: application/json
 
 {
-  "patientId": "659dd96624dc536afeca22bc",
-
-  "biologie": {
-    "hemoglobinemie": 14.5,
-    "gb": 8000,
-    "plaquettes": 250000,
-    "vgm": 90,
-    "ccmh": 34,
-    "tcmh": 12,
-    "crp": 3.5,
-    "uree": 25,
-    "creatininemie": 1.2,
-    "ntProBNP": 150,
-    "prolactine": 12
-  },
-
-  "telecoeur": {
-    "presente": true,
-    "indexCardiothoracique": 0.5
-  },
-
-  "autresSignes": "Some additional signs",
-
-  "ecg": {
-    "presente": true,
-    "rythmeCardiaque": "Sinusal"
-  },
-
-  "ett": {
-    "presente": true,
-    "dtdvg": "Normal",
-    "dtsvg": "Normal",
-    "fevg": "Normal",
-    "dtog": "Normal",
-    "ntProBNP": true,
-    "prolactine": false
-  },
-
-  "epanchementPericardique": {
-    "presente": false
-  },
-
-  "fuiteValvulaire": {
-    "presente": true,
-    "typeFuite": "Mitrale"
-  },
-
-  "stenoseValvulaire": {
-    "presente": false
-  },
-
-  "traitement": {
-    "diuretique": true,
-    "iec": false,
-    "tonicardiaque": true,
-    "bromocriptine": false,
-    "anticoagulants": true,
-    "betabloquants": false,
-    "contraception": true,
-    "autres": false
-  },
-
-  "modaliteEvolutiveHospitalisation": "Favorable",
-
-  "aspectsDefavorables": {
-    "complications": true,
-    "deces": false
-  },
-
-  "typeComplications": ["AVC", "ICG"],
-
-  "delaiDeces": null,
-
-  "evolutionApresSortie": "6 mois",
-
-  "classeNYHA": "Récupération partielle",
-
-  "detailsDeces": {
-    "date": "2024-01-20T12:00:00Z",
-    "causes": "Unknown",
-    "lieu": "Hôpital"
-  },
-
-  "bonneObservanceTherapeutique": true,
-
-  "nombreRehospitalisations": 2,
-
-  "facteursDecompensation": {
-    "anemie": true,
-    "infectionsViralesOuBacteriennes": false,
-    "denutrition": true,
-    "rupturesTherapeutiques": false
-  },
-
-  "analyses": {
-    "nfs": true,
-    "uree": true,
-    "creatininemie": false
-  },
-
-  "echocardiographie": {
-    "e": "Normal",
-    "a": "Normal",
-    "td": "Normal",
-    "ee": "Normal",
-    "tapse": "Normal"
-  },
-
-  "evolutionBebe": {
-    "mortNes": false,
-    "faiblePoidsNaissance": false,
-    "prematurite": true,
-    "poidsNaissance": 3000,
-    "alimentationNaissance": "Breastfeeding",
-    "poids3Mois": 5000,
-    "alimentation3Mois": "Formula",
-    "poids6Mois": 7000,
-    "alimentation6Mois": "Mixed",
-    "poids12Mois": 9000,
-    "alimentation12Mois": "Solid Foods"
-  }
-}
-
+  "patientId":"65c2dec496cee048596a62d8",
+  "biologie":
+        {
+          "hemoglobinemie":"12",
+          "gb":0,
+          "plaquettes":0,
+          "vgm":0,
+          "ccmh":0,
+          "tcmh":0,
+          "crp":0,
+          "uree":0,
+          "creatininemie":0,
+          "ntProBNP":0,
+          "prolactine":0},
+          "telecoeur":{
+                  "presente":true,
+                  "indexCardiothoracique":"5",
+                  "autresSignes":"ytyfg"
+                  },
+          "ecg":{
+            "presente":false,
+            "rythmeCardiaque":[],
+            "autres":""
+          },
+          "ett":{
+            "presente":false,
+            "dtdvg":"",
+            "dtsvg":"",
+            "fevg":"",
+            "epanchementPericardique":{
+                                      "presente":false
+                                      },
+            "fuiteValvulaire":{
+                                "typeFuite":[]
+                              },
+            "stenoseValvulaire":{
+                                "typeStenose":[]
+                                }
+            },
+            "traitement":{
+                          "diuretique":false,
+                          "iec":true,
+                          "tonicardiaque":false,
+                          "bromocriptine":false,
+                          "anticoagulants":false,
+                          "betabloquants":false,
+                          "contraception":false,
+                          "autres":""},
+            "modaliteEvolutiveHospitalisation":{
+                        "presente":true,
+                        "aspectsDefavorables":{
+                                                "complications":true,
+                                                "deces":false},
+                        "typeComplications":["IVG","IVD"],
+                        "autres":"",
+                        "delaiDeces":0}
+          }
 
 ###
 PUT http://localhost:3000/api/users

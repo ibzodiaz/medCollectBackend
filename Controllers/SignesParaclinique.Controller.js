@@ -81,10 +81,10 @@ const createNewSignesParacliniques = async (req, res, next) => {
 
 const updateSignesParacliniques = async (req, res, next) => {
     try{    
-        const id = req.params.id;
+        const patientId = req.params.patientId;
         const updates = req.body;
         const options = {new:true};
-        const signesParacliniques = await SignesParacliniques.findByIdAndUpdate(id,updates,options);
+        const signesParacliniques = await SignesParacliniques.findOneAndUpdate({patientId},updates,options);
         if(!signesParacliniques){
             throw createError(404,'SignesParacliniques does not exist.');
         }
@@ -101,8 +101,8 @@ const updateSignesParacliniques = async (req, res, next) => {
 
 const deleteSignesParacliniques = async (req, res, next) => {
     try{    
-        const id = req.params.id;
-        const signesParacliniques = await SignesParacliniques.findByIdAndDelete(id);
+        const patientId = req.params.patientId;
+        const signesParacliniques = await SignesParacliniques.findOneAndDelete({patientId});
         if(!signesParacliniques){
             throw createError(404,'SignesParacliniques does not exist.');
         }

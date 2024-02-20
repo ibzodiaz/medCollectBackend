@@ -25,6 +25,7 @@ const HopitalRoute = require("./Routes/Hopital.route");
 const AntecedentRoute = require("./Routes/Antecedent.route");
 const SignesCliniqueRoute = require("./Routes/SignesClinique.route");
 const SignesParacliniqueRoute = require("./Routes/SignesParaclinique.route");
+const EvolutionRoute = require("./Routes/Evolution.route");
 const UserRoute = require("./Routes/User.route");
 const AuthRoute = require("./Routes/Auth.route");
 
@@ -32,6 +33,7 @@ app.use("/api/patients",PatientRoute);
 app.use("/api/patients/antecedents",AntecedentRoute);
 app.use("/api/patients/signescliniques",SignesCliniqueRoute);
 app.use("/api/patients/signesparacliniques",SignesParacliniqueRoute);
+app.use("/api/evolution",EvolutionRoute);
 app.use("/api/users",UserRoute);
 app.use("/api/auth",AuthRoute);
 app.use("/api/meetings",MeetingsRoute);

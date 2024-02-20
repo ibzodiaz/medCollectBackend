@@ -6,8 +6,7 @@ const Schema = mongoose.Schema;
 const SignesParacliniquesSchema = new Schema({
    patientId: {
       type: Schema.Types.ObjectId,
-      ref: 'Patient',
-      required: true
+      ref: 'Patient'
    },
    biologie: {
       hemoglobinemie: Number,
@@ -25,57 +24,75 @@ const SignesParacliniquesSchema = new Schema({
    telecoeur: {
       presente: {
          type: Boolean,
-         required: true
       },
-      indexCardiothoracique: Number
+      indexCardiothoracique: Number,
+      autresSignes: String
    },
-   autresSignes: String,
    ecg: {
       presente: {
          type: Boolean,
-         required: true
       },
       rythmeCardiaque: {
-         type: String,
-         enum: ['Sinusal', 'Tachycardie', 'Troubles conductifs', 'HAG', 'HVG', 'HAD', 'HVD', 'FA', 'fa', 'Autres']
+         type: [String],
+         default: [],
+         required: true,
+         validate: {
+             validator: function (value) {
+                 // Assurez-vous que chaque élément du tableau est une chaîne valide
+                 return value.every(val => ['Sinusal', 'Tachycardie', 'Troubles conductifs', 'HAG', 'HVG', 'HAD', 'HVD', 'FA', 'fa'].includes(val));
+             },
+             message: props => `${props.value} is not a valid typeSouffle value!`
+         }
+      },
+      autres:{
+         type:String
       }
    },
    ett: {
       presente: {
          type: Boolean,
-         required: true
       },
       dtdvg: String,
       dtsvg: String,
       fevg: String,
-      dtog: String,
-      ntProBNP: Boolean,
-      prolactine: Boolean
-   },
-   epanchementPericardique: {
-      presente: {
-         type: Boolean,
-         required: true
-      }
-   },
-   fuiteValvulaire: {
-      presente: {
-         type: Boolean,
-         required: true
+      epanchementPericardique: {
+         presente: {
+            type: Boolean,
+         }
       },
-      typeFuite: {
-         type: String,
-         enum: ['Absente', 'Aortique', 'Mitrale', 'Tricuspidienne', 'Pulmonaire']
-      }
-   },
-   stenoseValvulaire: {
-      presente: {
-         type: Boolean,
-         required: true
+      fuiteValvulaire: {
+         presente: {
+            type: Boolean,
+         },
+         typeFuite: {
+            type: [String],
+            default: [],
+            required: true,
+            validate: {
+                validator: function (value) {
+                    // Assurez-vous que chaque élément du tableau est une chaîne valide
+                    return value.every(val => ['Absente', 'Aortique', 'Mitrale', 'Tricuspidienne', 'Pulmonaire'].includes(val));
+                },
+                message: props => `${props.value} is not a valid typeFuite value!`
+            }
+         }
       },
-      typeStenose: {
-         type: String,
-         enum: ['Absente', 'Aortique', 'Mitrale', 'Tricuspidienne', 'Pulmonaire']
+      stenoseValvulaire: {
+         presente: {
+            type: Boolean,
+         },
+         typeStenose: {
+            type: [String],
+            default: [],
+            required: true,
+            validate: {
+                validator: function (value) {
+                    // Assurez-vous que chaque élément du tableau est une chaîne valide
+                    return value.every(val => ['Absente', 'Aortique', 'Mitrale', 'Tricuspidienne', 'Pulmonaire'].includes(val));
+                },
+                message: props => `${props.value} is not a valid typeFuite value!`
+            }
+         }
       }
    },
    traitement: {
@@ -86,69 +103,20 @@ const SignesParacliniquesSchema = new Schema({
       anticoagulants: Boolean,
       betabloquants: Boolean,
       contraception: Boolean,
-      autres: Boolean
+      autres: String
    },
    modaliteEvolutiveHospitalisation: {
-      type: String,
-      enum: ['Favorable', 'Défavorable']
-   },
-   aspectsDefavorables: {
-      complications: Boolean,
-      deces: Boolean
-   },
-   typeComplications: {
-      type: [String],
-      enum: ['AVC', 'IVG', 'IVD', 'ICG', 'TDR', 'TDC', 'Pericardite', 'Insuffisance coronarienne', 'Acc. Embolique', 'Nephropathie', 'Abces splenique', 'Autre', 'Arthropathie']
-   },
-   delaiDeces: Number,
-   evolutionApresSortie: {
-      type: String,
-      enum: ['3 mois', '6 mois', '9 mois', '12 mois']
-   },
-   classeNYHA: {
-      type: String,
-      enum: ['Récupération totale', 'Récupération partielle', 'Etat stationnaire', 'Dégradation de la qualité de vie', 'Décès']
-   },
-   detailsDeces: {
-      date: Date,
-      causes: String,
-      lieu: {
-         type: String,
-         enum: ['Hôpital', 'Domicile']
-      }
-   },
-   bonneObservanceTherapeutique: Boolean,
-   nombreRehospitalisations: Number,
-   facteursDecompensation: {
-      anemie: Boolean,
-      infectionsViralesOuBacteriennes: Boolean,
-      denutrition: Boolean,
-      rupturesTherapeutiques: Boolean
-   },
-   analyses: {
-      nfs: Boolean,
-      uree: Boolean,
-      creatininemie: Boolean
-   },
-   echocardiographie: {
-      e: String,
-      a: String,
-      td: String,
-      ee: String,
-      tapse: String
-   },
-   evolutionBebe: {
-      mortNes: Boolean,
-      faiblePoidsNaissance: Boolean,
-      prematurite: Boolean,
-      poidsNaissance: Number,
-      alimentationNaissance: String,
-      poids3Mois: Number,
-      alimentation3Mois: String,
-      poids6Mois: Number,
-      alimentation6Mois: String,
-      poids12Mois: Number,
-      alimentation12Mois: String
+      presente: Boolean,
+      aspectsDefavorables: {
+         complications: Boolean,
+         deces: Boolean
+      },
+      typeComplications: {
+         type: [String],
+         enum: ['AVC', 'IVG', 'IVD', 'ICG', 'TDR', 'TDC', 'Pericardite', 'Insuffisance coronarienne', 'Acc. Embolique', 'Nephropathie', 'Abces splenique', 'Autre', 'Arthropathie']
+      },
+      autres: String,
+      delaiDeces: Number
    }
 });
 
