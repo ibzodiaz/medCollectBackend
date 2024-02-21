@@ -33,7 +33,7 @@ app.use("/api/patients",PatientRoute);
 app.use("/api/patients/antecedents",AntecedentRoute);
 app.use("/api/patients/signescliniques",SignesCliniqueRoute);
 app.use("/api/patients/signesparacliniques",SignesParacliniqueRoute);
-app.use("/api/evolution",EvolutionRoute);
+app.use("/api/patients/evolution",EvolutionRoute);
 app.use("/api/users",UserRoute);
 app.use("/api/auth",AuthRoute);
 app.use("/api/meetings",MeetingsRoute);

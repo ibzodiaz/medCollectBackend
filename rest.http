@@ -324,3 +324,9 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3000/api/hopital
+
+###
+POST http://localhost:3000/api/patients/evolution
+Content-Type: application/json
+
+{"patientId":"65c2e0ee96cee048596a62f2","mere":{"presente":true,"evolutionApresSortie":"9mois","classeNYHA":"recuperation_totale","detailsDeces":{"presente":true,"date":"2024-02-10","causes":"accident","lieu":"hopital"},"bonneObservanceTherapeutique":false,"nombreRehospitalisations":0,"facteursDecompensation":{"anemie":false,"infectionsVirales":false,"infectionsBacteriennes":true,"denutrition":false,"rupturesTherapeutiques":false},"echocardiographie":{"dtdvg":"","dtsvg":"","fevg":"","fr":"","e":"","a":"","td":"","ee":"","tapse":"","dtog":""},"biologie":{"hemoglobinemie":0,"gb":0,"plaquettes":0,"vgm":0,"ccmh":0,"tcmh":0,"crp":0,"uree":0,"creatininemie":0,"ntProBNP":0,"prolactine":0}},"enfant":{"presente":false,"evolutionBebe":{"mortNes":false,"faiblePoidsNaissance":false,"prematurite":false,"poidsNaissance":0,"alimentationNaissance":"","poids3Mois":0,"alimentation3Mois":"","poids6Mois":0,"alimentation6Mois":"","poids12Mois":0,"alimentation12Mois":""}}}
