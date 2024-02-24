@@ -36,7 +36,7 @@ const PatientSchema = new Schema({
         type:String,
         required:true
     }
-});
+},{ timestamps: true });
 
 const Patient = mongoose.model('Patient',PatientSchema);
 module.exports = Patient;

@@ -5,7 +5,8 @@ const Schema = mongoose.Schema;
 const AntecedentSchema = new Schema({
    patientId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Patient'
+      ref: 'Patient',
+      required:true
    },
    htaGravidique: Boolean,
    diabete_gestionnelle: Boolean,
@@ -16,7 +17,7 @@ const AntecedentSchema = new Schema({
    gestite: Number,
    parite: Number,
    grossessesGemellaires: Boolean,
-   tocolyseProlongee: String,
+   tocolyseProlongee: Boolean,
 
    atcdDecompensation: Boolean,
    nombreAtcdDecompensation: Number,

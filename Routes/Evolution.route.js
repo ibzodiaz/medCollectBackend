@@ -5,8 +5,8 @@ const EvolutionController = require("../Controllers/Evolution.Controller");
 
 router.get("/", EvolutionController.getAllEvolution);
 router.post("/", EvolutionController.createNewEvolution);
-router.get("/one/:patientId", EvolutionController.getEvolutionOne);
-router.patch("/:patientId", EvolutionController.updateEvolution);
-router.delete("/:patientId", EvolutionController.deleteEvolution);
+router.get("/:patientId/:consultationId", EvolutionController.getEvolutionOne);
+router.patch("/:patientId/:consultationId", EvolutionController.updateEvolution);
+router.delete("/:patientId/:consultationId", EvolutionController.deleteEvolution);
 
 module.exports = router;

@@ -8,6 +8,11 @@ const SignesCliniquesSchema = new Schema({
       ref: 'Patient',
       required: true
    },
+   consultationId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Consultation',
+      required:true
+   },
    dyspneeEffort: {
       presente: {
          type: Boolean,

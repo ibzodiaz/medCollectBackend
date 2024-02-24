@@ -41,9 +41,11 @@ const getEvolutionById = async (req,res,next) => {
 const getEvolutionOne = async (req, res, next) => {
     try {
         const patientId = new ObjectId(req.params.patientId);
+        const consultationId = new ObjectId(req.params.consultationId);
 
-        const evolution = await Evolution.findOne({ patientId })
+        const evolution = await Evolution.findOne({ patientId, consultationId })
             .populate('patientId')
+            .populate('consultationId')
             .exec();
 
         if (!evolution) {
@@ -82,9 +84,10 @@ const createNewEvolution = async (req, res, next) => {
 const updateEvolution = async (req, res, next) => {
     try{    
         const patientId = req.params.patientId;
+        const consultationId = req.params.consultationId;
         const updates = req.body;
         const options = {new:true};
-        const evolution = await Evolution.findOneAndUpdate({patientId},updates,options);
+        const evolution = await Evolution.findOneAndUpdate({patientId,consultationId},updates,options);
         if(!evolution){
             throw createError(404,'Evolution does not exist.');
         }
@@ -102,7 +105,9 @@ const updateEvolution = async (req, res, next) => {
 const deleteEvolution = async (req, res, next) => {
     try{    
         const patientId = req.params.patientId;
-        const evolution = await Evolution.findOneAndDelete({patientId});
+        const consultationId = req.params.consultationId;
+
+        const evolution = await Evolution.findOneAndDelete({patientId,consultationId});
         if(!evolution){
             throw createError(404,'Evolution does not exist.');
         }

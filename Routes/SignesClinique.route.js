@@ -7,8 +7,8 @@ const SignesCliniqueController = require("../Controllers/SignesClinique.Controll
 router.get("/", SignesCliniqueController.getAllSignesCliniques);
 router.post("/", SignesCliniqueController.createNewSignesCliniques);
 //router.get("/:id", SignesCliniqueController.getSignesCliniquesById);
-router.get("/one/:patientId", SignesCliniqueController.getSignesCliniquesOne);
-router.patch("/:patientId", SignesCliniqueController.updateSignesCliniques);
-//router.delete("/:id", SignesCliniqueController.deleteSignesCliniques);
+router.get("/:patientId/:consultationId", SignesCliniqueController.getSignesCliniquesOne);
+router.patch("/:patientId/:consultationId", SignesCliniqueController.updateSignesCliniques);
+//router.delete("/:patientId/:consultationId", SignesCliniqueController.deleteSignesCliniques);
 
 module.exports = router;

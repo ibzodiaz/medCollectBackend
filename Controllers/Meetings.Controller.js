@@ -40,6 +40,31 @@ const getMeetingsByUserId = async (req, res, next) => {
     }
 }
 
+
+const getMeetingsByPatientId = async (req, res, next) => {
+    try {
+        const patientId = new ObjectId(req.params.patientId);
+
+        const meetings = await Meetings.find({ patientId })
+            .populate('userId')
+            .populate('hospitalId')
+            .exec();
+
+        if (!meetings) {
+            throw createError(404, 'Meetings patient does not exist.');
+        }
+
+        res.send(meetings);
+    } catch (error) {
+        console.error(error.message);
+        if (error instanceof mongoose.CastError) {
+            next(createError(400, 'Invalid Meetings id'));
+            return;
+        }
+        next(error);
+    }
+}
+
 const getMeetingsByHospitalId = async (req, res, next) => {
     try {
         const hospitalId = new ObjectId(req.params.hospitalId);
@@ -120,5 +145,6 @@ module.exports = {
     getMeetingsByHospitalId,
     createNewMeetings,
     updateMeetings,
-    deleteMeetings
+    deleteMeetings,
+    getMeetingsByPatientId
 };

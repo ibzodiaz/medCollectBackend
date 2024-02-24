@@ -41,10 +41,12 @@ const getSignesParacliniquesById = async (req,res,next) => {
 const getSignesParacliniquesOne = async (req, res, next) => {
     try {
         const patientId = new ObjectId(req.params.patientId);
+        const consultationId = new ObjectId(req.params.consultationId);
 
-        const signesParacliniques = await SignesParacliniques.findOne({ patientId })
-            .populate('patientId')
-            .exec();
+        const signesParacliniques = await SignesParacliniques.findOne({ patientId,consultationId })
+        .populate('patientId')
+        .populate('consultationId')
+        .exec();
 
         if (!signesParacliniques) {
             throw createError(404, 'SignesParacliniques does not exist.');
@@ -82,9 +84,11 @@ const createNewSignesParacliniques = async (req, res, next) => {
 const updateSignesParacliniques = async (req, res, next) => {
     try{    
         const patientId = req.params.patientId;
+        const consultationId = req.params.consultationId;
+
         const updates = req.body;
         const options = {new:true};
-        const signesParacliniques = await SignesParacliniques.findOneAndUpdate({patientId},updates,options);
+        const signesParacliniques = await SignesParacliniques.findOneAndUpdate({patientId,consultationId},updates,options);
         if(!signesParacliniques){
             throw createError(404,'SignesParacliniques does not exist.');
         }
@@ -102,7 +106,8 @@ const updateSignesParacliniques = async (req, res, next) => {
 const deleteSignesParacliniques = async (req, res, next) => {
     try{    
         const patientId = req.params.patientId;
-        const signesParacliniques = await SignesParacliniques.findOneAndDelete({patientId});
+        const consultationId = req.params.consultationId;
+        const signesParacliniques = await SignesParacliniques.findOneAndDelete({patientId,consultationId});
         if(!signesParacliniques){
             throw createError(404,'SignesParacliniques does not exist.');
         }

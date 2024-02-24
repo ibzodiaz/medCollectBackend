@@ -42,6 +42,7 @@ const getAntecedentById = async (req, res, next) => {
 const getAntecedentOne = async (req, res, next) => {
     try {
         const patientId = new ObjectId(req.params.patientId);
+        //const consultationId = new ObjectId(req.params.consultationId);
 
         const antecedent = await Antecedent.findOne({ patientId })
             .populate('patientId')
@@ -80,9 +81,11 @@ const createNewAntecedent = async (req, res, next) => {
 const updateAntecedent = async (req, res, next) => {
     try {    
         const patientId = req.params.patientId;
+        //const consultationId = req.params.consultationId;
+
         const updates = req.body;
         const options = { new: true };
-        const antecedent = await Antecedent.findOneAndUpdate({ patientId: patientId }, updates, options);
+        const antecedent = await Antecedent.findOneAndUpdate({ patientId }, updates, options);
         if (!antecedent) {
             throw createError(404, 'Antecedent does not exist.');
         }
@@ -99,8 +102,10 @@ const updateAntecedent = async (req, res, next) => {
 
 const deleteAntecedent = async (req, res, next) => {
     try {    
-        const id = req.params.id;
-        const antecedent = await Antecedent.findByIdAndDelete(id);
+        const patientId = req.params.patientId;
+        //const consultationId = req.params.consultationId;
+        
+        const antecedent = await Antecedent.findOneAndDelete({ patientId });
         if (!antecedent) {
             throw createError(404, 'Antecedent does not exist.');
         }

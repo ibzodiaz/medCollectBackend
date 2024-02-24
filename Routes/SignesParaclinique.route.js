@@ -6,8 +6,8 @@ const SignesParacliniqueController = require("../Controllers/SignesParaclinique.
 router.get("/", SignesParacliniqueController.getAllSignesParacliniques);
 router.post("/", SignesParacliniqueController.createNewSignesParacliniques);
 //router.get("/:id", SignesParacliniqueController.getSignesParacliniquesById);
-router.get("/one/:patientId", SignesParacliniqueController.getSignesParacliniquesOne);
-router.patch("/:patientId", SignesParacliniqueController.updateSignesParacliniques);
-router.delete("/:patientId", SignesParacliniqueController.deleteSignesParacliniques);
+router.get("/:patientId/:consultationId", SignesParacliniqueController.getSignesParacliniquesOne);
+router.patch("/:patientId/:consultationId", SignesParacliniqueController.updateSignesParacliniques);
+router.delete("/:patientId/:consultationId", SignesParacliniqueController.deleteSignesParacliniques);
 
 module.exports = router;

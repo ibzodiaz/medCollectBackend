@@ -42,9 +42,11 @@ const getSignesCliniquesById = async (req,res,next) => {
 const getSignesCliniquesOne = async (req, res, next) => {
     try {
         const patientId = new ObjectId(req.params.patientId);
+        const consultationId = new ObjectId(req.params.consultationId);
 
-        const signesCliniques = await SignesCliniques.findOne({ patientId })
+        const signesCliniques = await SignesCliniques.findOne({ patientId,consultationId })
             .populate('patientId')
+            .populate('consultationId')
             .exec();
 
         if (!signesCliniques) {
@@ -83,9 +85,10 @@ const createNewSignesCliniques = async (req, res, next) => {
 const updateSignesCliniques = async (req, res, next) => {
     try{    
         const patientId = req.params.patientId;
+        const consultationId = req.params.consultationId;
         const updates = req.body;
         const options = {new:true};
-        const signesCliniques = await SignesCliniques.findOneAndUpdate({ patientId: patientId },updates,options);
+        const signesCliniques = await SignesCliniques.findOneAndUpdate({ patientId,consultationId },updates,options);
         if(!signesCliniques){
             throw createError(404,'SignesCliniques does not exist.');
         }
@@ -102,8 +105,10 @@ const updateSignesCliniques = async (req, res, next) => {
 
 const deleteSignesCliniques = async (req, res, next) => {
     try{    
-        const id = req.params.id;
-        const signesCliniques = await SignesCliniques.findByIdAndDelete(id);
+        const patientId = req.params.patientId;
+        const consultationId = req.params.consultationId;
+        
+        const signesCliniques = await SignesCliniques.findOneAndDelete({ patientId,consultationId });
         if(!signesCliniques){
             throw createError(404,'SignesCliniques does not exist.');
         }

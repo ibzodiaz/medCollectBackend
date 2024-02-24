@@ -8,6 +8,11 @@ const EvolutionSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: 'Patient'
    },
+   consultationId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Consultation',
+      required:true
+   },
    mere:{
       presente:Boolean,
       evolutionApresSortie: {
