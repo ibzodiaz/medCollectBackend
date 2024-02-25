@@ -13,16 +13,12 @@ const ConsultationSchema = new Schema({
         ref: 'Patient',
         required: true
     },
-    date: {
-        type:String,
-        required:true
-    },
     motif: {
         type:String,
         required:true
     },
     complet: Boolean
-});
+},{timestamps:true});
 
 const Consultation = mongoose.model('Consultation', ConsultationSchema);
 module.exports = Consultation;

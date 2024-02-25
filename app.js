@@ -30,6 +30,10 @@ const EvolutionRoute = require("./Routes/Evolution.route");
 const UserRoute = require("./Routes/User.route");
 const AuthRoute = require("./Routes/Auth.route");
 const ConsultationRoute = require("./Routes/Consultation.route");
+const path = require("path");
+
+
+app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/api/patients",PatientRoute);
 app.use("/api/patients/antecedents",AntecedentRoute);

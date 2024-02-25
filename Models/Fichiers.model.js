@@ -16,8 +16,8 @@ const FichierSchema = new Schema({
     fileName: { type: String, required: true },
     filePath: { type: String, required: true },
     fileSize: { type: Number, required: true },
-    fileType: { type: String, required: true }
-
+    fileType: { type: String, required: true },
+    fileCategory: { type: String, required: true }
 },{timestamps:true});
 
 const Fichier = mongoose.model('Fichier', FichierSchema);

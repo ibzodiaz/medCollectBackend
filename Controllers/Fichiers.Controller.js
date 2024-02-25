@@ -1,10 +1,5 @@
 const createError = require('http-errors');
 const mongoose = require('mongoose');
-const multer = require('multer');
-const path = require('path');
-
-// Définition de la configuration de Multer pour l'upload de fichiers
-const upload = multer({ dest: 'uploads/' }); // Dossier où les fichiers seront sauvegardés
 
 const Fichiers = require("../Models/Fichiers.model");
 
@@ -21,33 +16,13 @@ const getAllFichiers = async (req, res, next) => {
     
 }
 
-const getFichiersById = async (req,res,next) => {
-
-    try{    
-        const id = req.params.id;
-        const fichiers = await Fichiers.findById(id)
-                                                    .populate('patientId')
-                                                    .exec();
-        if(!fichiers){
-            throw createError(404,'Fichiers does not exist.');
-        }
-        res.send(fichiers);
-    }catch(error){
-        console.log(error.message);
-        if(error instanceof mongoose.CastError){
-            next(createError(400,'Invalid Fichiers id'));
-            return;
-        }
-        next(error);
-    }
-        
-}
 
 const getFichiersPatient = async (req, res, next) => {
     try {
         const patientId = new ObjectId(req.params.patientId);
+        const userId = new ObjectId(req.params.userId);
 
-        const fichiers = await Fichiers.find({ patientId })
+        const fichiers = await Fichiers.find({ patientId,userId })
             .populate('patientId')
             .exec();
 
@@ -67,17 +42,28 @@ const getFichiersPatient = async (req, res, next) => {
 }
 
 
+
 const createNewFichiers = async (req, res, next) => {
     try {
         // Si un fichier a été uploadé
-        if (req.file) {
-            // Récupérer le chemin du fichier uploadé
-            const filePath = req.file.path;
-            // Enregistrer le chemin du fichier dans la base de données
-            req.body.filePath = filePath;
+        if (req.files && req.files.file) {
+            // Récupérer le chemin temporaire du fichier uploadé
+            const filePath = req.files.file.tempFilePath;
+            // Renommer et déplacer le fichier vers le dossier de destination
+            const fileName = req.body.fileName;
+            req.files.file.mv("./public/data/" + fileName, (err) => {
+                if (err) {
+                    console.error(err);
+                    return res.status(500).send('Erreur lors de l\'enregistrement du fichier.');
+                }
+            });
+            // Ajouter le chemin du fichier à req.body
+            //req.body.filePath = 'data/' + fileName;
         }
-
-        // Créer une instance de modèle avec les données reçues
+        //console.log(req.files)
+        // console.log("********************************")
+        // console.log(req.body)
+        
         const fichiers = new Fichiers(req.body);
 
         // Enregistrer l'instance dans la base de données
@@ -93,7 +79,7 @@ const createNewFichiers = async (req, res, next) => {
         }
         next(error);
     }
-}
+};
 
 
 
@@ -136,11 +122,9 @@ const deleteFichiers = async (req, res, next) => {
 }
 
 module.exports = {
-    getAllFichiers, 
-    getFichiersById,
+    getAllFichiers,
     getFichiersPatient,
     createNewFichiers,
     updateFichiers,
-    deleteFichiers,
-    upload
+    deleteFichiers
 };
