@@ -43,25 +43,22 @@ const userSchema = new mongoose.Schema({
     speciality: {
         type: String,
     },
+    status:{
+        type: String,
+        enum:['A','D'],
+        required:true
+    },
     deletedAt: {
         type: Date
     }
 }, { timestamps: true });
 
-// userSchema.pre('save', async function (next) {
-//     if (this.isModified('password')) {
-//         const hash = await bcrypt.hash(this.password, parseInt(process.env.BCRYPT_SALT_ROUND));
-//         this.password = hash;
-//     }
-//     next();
-// });
 
 userSchema.methods.checkPassword = async function (password,passwordhashed) {
     return await bcrypt.compare(password.trim(), passwordhashed.trim());
 };
 
 
-// Création du modèle User à partir du schéma
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;

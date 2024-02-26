@@ -22,6 +22,9 @@ const MeetingsRoute = require("./Routes/Meetings.route");
 const PlanningRoute = require("./Routes/Planning.route");
 const HopitalRoute = require("./Routes/Hopital.route");
 const FichiersRoute = require("./Routes/Fichiers.route");
+const PrescriptionRoute = require("./Routes/Prescription.route");
+
+const OrdonnanceRoute = require("./Routes/Ordonnance.route");
 
 const AntecedentRoute = require("./Routes/Antecedent.route");
 const SignesCliniqueRoute = require("./Routes/SignesClinique.route");
@@ -42,6 +45,9 @@ app.use("/api/patients/signesparacliniques",SignesParacliniqueRoute);
 app.use("/api/patients/evolution",EvolutionRoute);
 app.use("/api/patients/consultation",ConsultationRoute);
 app.use("/api/patients/fichiers",FichiersRoute);
+app.use("/api/patients/prescription",PrescriptionRoute);
+
+app.use("/api/ordonnances",OrdonnanceRoute);
 
 app.use("/api/users",UserRoute);
 app.use("/api/auth",AuthRoute);

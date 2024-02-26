@@ -352,3 +352,30 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3000/api/patients/antecedents/65d7c914ce099f0d889b5d80/65d7ed992f1b72e64652688e
+
+
+###
+POST http://localhost:3000/api/ordonnances
+Content-Type: application/json
+
+{
+    "posologie": "1 cp/jr",
+    "medicament": "Lasilix special 500mg"
+}
+
+
+###
+PUT http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+    "hopitalId": "65d0d50f38a559095a39c6da",
+    "nom":"test",
+    "prenom":"test",
+    "pseudo":"test",
+    "email":"test@gmail.com",
+    "password": "Passer2024",
+    "service": "",
+    "speciality": "",
+    "status":"A"
+}

@@ -84,7 +84,7 @@ const updateConsultation = async (req, res, next) => {
         const id = req.params.id;
         const updates = req.body;
         const options = {new:true};
-        const consultation = await Consultation.findByIdAndUpdate({id},updates,options);
+        const consultation = await Consultation.findByIdAndUpdate(id,updates,options);
         if(!consultation){
             throw createError(404,'Consultation does not exist.');
         }
