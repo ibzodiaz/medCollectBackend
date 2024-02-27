@@ -44,8 +44,9 @@ const getMeetingsByUserId = async (req, res, next) => {
 const getMeetingsByPatientId = async (req, res, next) => {
     try {
         const patientId = new ObjectId(req.params.patientId);
+        const hospitalId = new ObjectId(req.params.hospitalId);
 
-        const meetings = await Meetings.find({ patientId })
+        const meetings = await Meetings.find({ patientId,hospitalId })
             .populate('userId')
             .populate('hospitalId')
             .exec();

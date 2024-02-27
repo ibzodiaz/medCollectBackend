@@ -26,7 +26,8 @@ const PatientSchema = new Schema({
     },
     telephone:{
         type:String,
-        required:true
+        required:true,
+        unique:true
     },
     profession:{
         type:String,

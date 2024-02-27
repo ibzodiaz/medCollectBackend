@@ -41,8 +41,9 @@ const getConsultationById = async (req,res,next) => {
 const getConsultationPatient = async (req, res, next) => {
     try {
         const patientId = new ObjectId(req.params.patientId);
+        const userId = new ObjectId(req.params.userId);
 
-        const consultation = await Consultation.find({ patientId })
+        const consultation = await Consultation.find({ patientId,userId })
             .populate('patientId')
             .exec();
 

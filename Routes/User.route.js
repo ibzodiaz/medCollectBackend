@@ -19,12 +19,12 @@ router.get('/usersbyhopital/:hopitalId', userCtrl.getUsersByIdHopital)
 
 router.put('/', userCtrl.addUser)
 
-router.patch('/:id', userCtrl.updateUser)
+router.patch('/:userId', userCtrl.updateUser)
 
 router.post('/untrash/:id', userCtrl.untrashUser)
 
 router.delete('/trash/:id', userCtrl.trashUser)
     
-router.delete('/:id', userCtrl.deleteUser)
+router.delete('/:userId', userCtrl.deleteUser)
 
 module.exports = router;

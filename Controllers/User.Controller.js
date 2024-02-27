@@ -93,7 +93,15 @@ exports.addUser = async (req, res) => {
 };
 
 exports.updateUser = async (req, res) => {
-    const userId = req.params.id;
+
+    const { nom, prenom, pseudo, email, password } = req.body;
+
+    // Validation des données reçues
+    if (!nom || !prenom || !pseudo || !email || !password) {
+        return res.status(400).json({ message: 'Missing Data' });
+    }
+
+    const userId = req.params.userId;
 
     // Vérification si le champ id est présent et cohérent
     if (!userId) {
@@ -107,13 +115,18 @@ exports.updateUser = async (req, res) => {
             return res.status(404).json({ message: 'This user does not exist!' });
         }
 
+        const hash = await bcrypt.hash(password.trim(), parseInt(process.env.BCRYPT_SALT_ROUND));
+        req.body.password = hash;
+
         // Mise à jour de l'utilisateur
         await User.findByIdAndUpdate(userId, req.body);
         return res.json({ message: 'User Updated' });
     } catch (err) {
+        console.log(err.message);
         return res.status(500).json({ message: 'Database Error', error: err });
     }
 };
+
 
 exports.untrashUser = async (req, res) => {
     const userId = req.params.id;
@@ -148,7 +161,7 @@ exports.trashUser = async (req, res) => {
 };
 
 exports.deleteUser = async (req, res) => {
-    const userId = req.params.id;
+    const userId = req.params.userId;
 
     // Vérification si le champ id est présent et cohérent
     if (!userId) {
@@ -162,3 +175,4 @@ exports.deleteUser = async (req, res) => {
         res.status(500).json({ message: 'Database Error', error: err });
     }
 };
+

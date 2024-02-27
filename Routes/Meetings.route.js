@@ -7,7 +7,7 @@ router.get('/', MeetingsController.getAllMeetings);
 router.post('/', MeetingsController.createNewMeetings);
 //router.get('/:id', MeetingsController.getMeetingsById);
 router.get('/meetingbyhospital/:hospitalId',MeetingsController.getMeetingsByHospitalId);
-router.get('/meetingsbypatient/:patientId',MeetingsController.getMeetingsByPatientId);
+router.get('/meetingsbypatient/:patientId/:hospitalId',MeetingsController.getMeetingsByPatientId);
 router.get('/:userId', MeetingsController.getMeetingsByUserId);
 router.patch('/:id', MeetingsController.updateMeetings);
 router.delete('/:id', MeetingsController.deleteMeetings);

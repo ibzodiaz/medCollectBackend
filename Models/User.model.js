@@ -50,7 +50,8 @@ const userSchema = new mongoose.Schema({
     },
     deletedAt: {
         type: Date
-    }
+    },
+    imagePath: String
 }, { timestamps: true });
 
 
